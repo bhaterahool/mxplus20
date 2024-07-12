@@ -3,9 +3,9 @@
 		"version": "0.1.0",
 		"private": true,
 		"scripts": {
-				"dev": "next dev -p 443",
+				"dev": "next dev -p 8080",
 				"build": "parcel src/app/index.html --no-cache",
-				"start": "parcel --host 0.0.0.0 -p 443 src/app/index.html",
+				"start": "parcel --host 0.0.0.0 -p 8080 src/app/index.html",
 				"lint": "next lint"
 		},		
 		"dependencies": {
