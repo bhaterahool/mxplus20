@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 8080
 
 
-CMD ["yarn","build","run","start","export"]
+CMD ["yarn","start","export"]
