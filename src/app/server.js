@@ -1,31 +1,20 @@
-var express = require("express"); 
-var app = express();
+const express = require("express");
+const next = require("next");
 
-// Set the Server Port
-var PORT  = process.env.PORT || 8080
+const port = parseInt(process.env.PORT, 10) || 3000;
+const dev = process.env.NODE_ENV === "production";
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
-var server = app.listen(PORT, function() {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Listening at http://%s:%s', 'localhost', port);
+app.prepare().then(() => {
+  const server = express();
+
+  server.get("*", (req, res) => {
+    return handle(req, res);
+  });
+
+  server.listen(port, err => {
+    if (err) throw err;
+    console.log(`> Ready on http://localhost:${port}`);
+  });
 });
-
-
-//GET STATUS ENDPOINT
-app.get('/', function (req, res) {
-  res.send('Our Server is Up and Running!')
-})
-
-//GET Date ENDPOINT
-app.get('/date', function (req, res) {
-  var utcDate = new Date()
-
-  var day = utcDate.getDate()
-  var month = utcDate.getMonth()+1
-  var year = utcDate.getFullYear()
-
-  //Date in month-day-year format
-  var todaysDate = `${month}-${day}-${year}`
-
-  res.send(todaysDate)
-})
