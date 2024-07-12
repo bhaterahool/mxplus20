@@ -2,12 +2,11 @@
 		"name": "maxpt",
 		"version": "0.1.0",
 		"private": true,
-		"main": "server.js",
 		"scripts": {
 				"dev": "node server.js",
-    			"build": "next build",
-    			"start": "next start",
-    			"export": "next export"
+    			"build": "parcel build src/app/index.html",
+    			"start": "parcel start src/app/index.html",
+    			"export": "parcel export"
 		},		
 		"dependencies": {
 				"@carbon/colors": "^10.21.0",
